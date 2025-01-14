@@ -1,0 +1,951 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Planilla Web</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="ics.js"></script>
+		<link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css">
+		<meta name="viewport" content="width=device-width">
+		<script>
+		  $( function() {
+			
+			//$( "#salutation" ).selectmenu();
+		  } );
+		  
+		 
+		</script>
+		<script>
+
+  			// Original JavaScript code by Chirp Internet: www.chirpinternet.eu
+  			// Please acknowledge use of this code by including this header.
+
+ 			 var today = new Date();
+ 			//var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
+			var expiry = new Date(today.getTime() + 12 * 3600 * 1000); // con 12horas nos vale
+
+  			var setCookie = function(name, value) {
+   			 document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+  			};
+			
+			  // Original JavaScript code by Chirp Internet: www.chirpinternet.eu
+			  // Please acknowledge use of this code by including this header.
+
+			  var getCookie = function(name) {
+				var re = new RegExp(name + "=([^;]+)");
+				var value = re.exec(document.cookie);
+				return (value != null) ? unescape(value[1]) : null;
+			  };
+
+
+		</script>
+		<style>
+			.ui-button { padding: 0.2em 0.5em}
+			
+			.rotate90 {
+				-webkit-transform: rotate(270deg);
+				-moz-transform: rotate(270deg);
+				-o-transform: rotate(270deg);
+				-ms-transform: rotate(270deg);
+				transform: rotate(270deg);
+			}
+		</style>
+	</head>
+	<body>
+	<div id="container">
+		<div id="filtros">
+		<form id="formBloque">
+			<div>
+				
+					<label>Bloque:</label>
+					<select name="bloque" id="bloque" >
+						<option value="Ruta">Ruta</option>
+						<option value="TMA">TMA</option>
+					</select>
+				
+				  <button class="ui-button ui-widget ui-corner-all">Descargar Alarmas</button>
+				
+			</div>
+			<div>
+				<label >Planilla:</label>
+				<select name="planilla" id="planilla" >
+					<option value="3x1">3x1</option>
+					<option value="8x3">8x3</option>
+					<option value="6x2">6x2</option>
+				</select>
+				<div id ="divselc8" style="display: inline-block">
+					<select name="selc8" id="selc8" ">
+						<option value="c1">c1</option>
+						<option value="c2">c2</option>
+						<option value="c3">c3</option>
+						<option value="c4">c4</option>
+						<option value="c5">c5</option>
+						<option value="c6">c6</option>
+						<option value="c7">c7</option>
+						<option value="c8">c8</option>
+					</select>
+				</div>
+				<div id="divselc3" style="display: inline-block">
+					<select name="selc3" id="selc3" >
+						<option value="c1">c1</option>
+						<option value="c2">c2</option>
+						<option value="c3">c3</option>
+					</select>
+				</div>
+				<div id="divselc6" style="display: inline-block">
+					<select name="selc6" id="selc6" >
+						<option value="c1">c1</option>
+						<option value="c2">c2</option>
+						<option value="c3">c3</option>
+						<option value="c4">c4</option>
+						<option value="c5">c5</option>
+						<option value="c6">c6</option>
+						
+					</select>
+				</div>
+			</div>
+			<div id="divSectRuta">
+			<label >Sectores:</label>
+				<select name="sectoresRuta" id="sectoresRuta" >
+					<option value="BAS" selected>BAS</option>
+					<option value="BSL">BSL</option>
+					<option value="BSU">BSU</option>
+					<option value="CCC">CCC</option>
+					<option value="CCU">CCU</option>
+					<option value="CCL">CCL</option>
+					<option value="CVN">CVN</option>
+					<option value="GOI">GOI</option>
+					<option value="GO1">GO1</option>
+					<option value="GO12">GO12</option>
+					<option value="GO2">GO2</option>
+					<option value="GO23">GO23</option>
+					<option value="GO3">GO3</option>
+					<option value="LGL">LGL</option>
+					<option value="LGU">LGU</option>
+					<option value="LVC">LSL</option>
+					<option value="LVC">LVC</option>
+					<option value="LVL">LVL</option>
+					<option value="LVU">LVU</option>
+					<option value="LVS">LVS</option>
+					<option value="MUS">MUS</option>
+					<option value="MVS">MVS</option>
+					<option value="MNU">MNU</option>
+					<option value="MNL">MNL</option>
+					<option value="MNI">MNI</option>
+					<option value="MMI">MMI</option>
+					<option value="PPI">PLC</option>
+					<option value="PPI">PLI</option>
+					<option value="PPI">PPI</option>
+					<option value="P2R">P2R</option>
+					<option value="VNI">VNI</option>
+					<option value="VVI">VVI</option>
+				</select>
+				<select name="sectoresRuta2" id="sectoresRuta2" >
+					<option value="BAS">BAS</option>
+					<option value="BSL">BSL</option>
+					<option value="BSU">BSU</option>
+					<option value="CCC" selected>CCC</option>
+					<option value="CCU">CCU</option>
+					<option value="CCL">CCL</option>
+					<option value="CVN">CVN</option>
+					<option value="GOI">GOI</option>
+					<option value="GO1">GO1</option>
+					<option value="GO12">GO12</option>
+					<option value="GO2">GO2</option>
+					<option value="GO23">GO23</option>
+					<option value="GO3">GO3</option>
+					<option value="LGL">LGL</option>
+					<option value="LGU">LGU</option>
+					<option value="LVC">LSL</option>
+					<option value="LVC">LVC</option>
+					<option value="LVL">LVL</option>
+					<option value="LVU">LVU</option>
+					<option value="LVS">LVS</option>
+					<option value="MUS">MUS</option>
+					<option value="MVS">MVS</option>
+					<option value="MNU">MNU</option>
+					<option value="MNL">MNL</option>
+					<option value="MNI">MNI</option>
+					<option value="MMI">MMI</option>
+					<option value="PPI">PLC</option>
+					<option value="PPI">PLI</option>
+					<option value="PPI">PPI</option>
+					<option value="P2R">P2R</option>
+					<option value="VNI">VNI</option>
+					<option value="VVI">VVI</option>
+				</select>
+				<select name="sectoresRuta3" id="sectoresRuta3" >
+					<option value="BAS">BAS</option>
+					<option value="BSL">BSL</option>
+					<option value="BSU">BSU</option>
+					<option value="CCC">CCC</option>
+					<option value="CCU">CCU</option>
+					<option value="CCL">CCL</option>
+					<option value="CVN">CVN</option>
+					<option value="GOI" selected>GOI</option>
+					<option value="GO1">GO1</option>
+					<option value="GO12">GO12</option>
+					<option value="GO2">GO2</option>
+					<option value="GO23">GO23</option>
+					<option value="GO3">GO3</option>
+					<option value="LGL">LGL</option>
+					<option value="LGU">LGU</option>
+					<option value="LVC">LSL</option>
+					<option value="LVC">LVC</option>
+					<option value="LVL">LVL</option>
+					<option value="LVU">LVU</option>
+					<option value="LVS">LVS</option>
+					<option value="MUS">MUS</option>
+					<option value="MVS">MVS</option>
+					<option value="MNU">MNU</option>
+					<option value="MNL">MNL</option>
+					<option value="MNI">MNI</option>
+					<option value="MMI">MMI</option>
+					<option value="PPI">PLC</option>
+					<option value="PPI">PLI</option>
+					<option value="PPI">PPI</option>
+					<option value="P2R">P2R</option>
+					<option value="VNI">VNI</option>
+					<option value="VVI">VVI</option>
+				</select>
+			</div>
+			<div id="divSectTMA">
+				<label >Sectores:</label>
+				<select name="sectoresTMA" id="sectoresTMA">
+					<option value="DDI">DDI</option>
+					<option value="DDN">DDN</option>
+					<option value="DDS">DDS</option>
+					<option value="DDX">DDX</option>
+					<option value="FINAL">FINAL</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T1T4">T1_T4</option>
+					<option value="T2T3">T2_T3</option>
+					<option value="XAL">XAL</option>
+					<option value="XAR">XAR</option>
+				</select>
+				<select name="sectoresTMA2" id="sectoresTMA2" >
+					<option value="DDI">DDI</option>
+					<option value="DDN">DDN</option>
+					<option value="DDS">DDS</option>
+					<option value="DDX">DDX</option>
+					<option value="FINAL">FINAL</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T1T4">T1_T4</option>
+					<option value="T2T3">T2_T3</option>
+					<option value="XAL">XAL</option>
+					<option value="XAR">XAR</option>
+				</select>
+				<select name="sectoresTMA3" id="sectoresTMA3" >
+					<option value="DDI">DDI</option>
+					<option value="DDN">DDN</option>
+					<option value="DDS">DDS</option>
+					<option value="DDX">DDX</option>
+					<option value="FINAL">FINAL</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T1T4">T1_T4</option>
+					<option value="T2T3">T2_T3</option>
+					<option value="XAL">XAL</option>
+					<option value="XAR">XAR</option>
+				</select>
+			</div>
+	
+	</form>
+	</div>
+	<div id="grafico">
+		<canvas id="canvasPlanilla" height="520px" width="350px" ></canvas>
+	</div>
+	<div>
+	<img width="350px"   src="i8x3.png" />
+	</div>
+	  <script type="text/javascript">
+    /*! ics.js Wed Aug 20 2014 17:23:02 */
+    var saveAs=saveAs||function(e){"use strict";if(typeof e==="undefined"||typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var t=e.document,n=function(){return e.URL||e.webkitURL||e},r=t.createElementNS("http://www.w3.org/1999/xhtml","a"),o="download"in r,a=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},i=/constructor/i.test(e.HTMLElement)||e.safari,f=/CriOS\/[\d]+/.test(navigator.userAgent),u=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},s="application/octet-stream",d=1e3*40,c=function(e){var t=function(){if(typeof e==="string"){n().revokeObjectURL(e)}else{e.remove()}};setTimeout(t,d)},l=function(e,t,n){t=[].concat(t);var r=t.length;while(r--){var o=e["on"+t[r]];if(typeof o==="function"){try{o.call(e,n||e)}catch(a){u(a)}}}},p=function(e){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)){return new Blob([String.fromCharCode(65279),e],{type:e.type})}return e},v=function(t,u,d){if(!d){t=p(t)}var v=this,w=t.type,m=w===s,y,h=function(){l(v,"writestart progress write writeend".split(" "))},S=function(){if((f||m&&i)&&e.FileReader){var r=new FileReader;r.onloadend=function(){var t=f?r.result:r.result.replace(/^data:[^;]*;/,"data:attachment/file;");var n=e.open(t,"_blank");if(!n)e.location.href=t;t=undefined;v.readyState=v.DONE;h()};r.readAsDataURL(t);v.readyState=v.INIT;return}if(!y){y=n().createObjectURL(t)}if(m){e.location.href=y}else{var o=e.open(y,"_blank");if(!o){e.location.href=y}}v.readyState=v.DONE;h();c(y)};v.readyState=v.INIT;if(o){y=n().createObjectURL(t);setTimeout(function(){r.href=y;r.download=u;a(r);h();c(y);v.readyState=v.DONE});return}S()},w=v.prototype,m=function(e,t,n){return new v(e,t||e.name||"download",n)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(e,t,n){t=t||e.name||"download";if(!n){e=p(e)}return navigator.msSaveOrOpenBlob(e,t)}}w.abort=function(){};w.readyState=w.INIT=0;w.WRITING=1;w.DONE=2;w.error=w.onwritestart=w.onprogress=w.onwrite=w.onabort=w.onerror=w.onwriteend=null;return m}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if(typeof define!=="undefined"&&define!==null&&define.amd!==null){define("FileSaver.js",function(){return saveAs})}
+
+    //var ics=function(e,t){"use strict";{if(!(navigator.userAgent.indexOf("MSIE")>-1&&-1==navigator.userAgent.indexOf("MSIE 10"))){void 0===e&&(e="default"),void 0===t&&(t="Calendar");var r=-1!==navigator.appVersion.indexOf("Win")?"\r\n":"\n",n=[],i=["BEGIN:VCALENDAR","PRODID:"+t,"VERSION:2.0"].join(r),o=r+"END:VCALENDAR",a=["SU","MO","TU","WE","TH","FR","SA"];return{events:function(){return n},calendar:function(){return i+r+n.join(r)+o},addEvent:function(t,i,o,l,u,s){if(void 0===t||void 0===i||void 0===o||void 0===l||void 0===u)return!1;if(s&&!s.rrule){if("YEARLY"!==s.freq&&"MONTHLY"!==s.freq&&"WEEKLY"!==s.freq&&"DAILY"!==s.freq)throw"Recurrence rrule frequency must be provided and be one of the following: 'YEARLY', 'MONTHLY', 'WEEKLY', or 'DAILY'";if(s.until&&isNaN(Date.parse(s.until)))throw"Recurrence rrule 'until' must be a valid date string";if(s.interval&&isNaN(parseInt(s.interval)))throw"Recurrence rrule 'interval' must be an integer";if(s.count&&isNaN(parseInt(s.count)))throw"Recurrence rrule 'count' must be an integer";if(void 0!==s.byday){if("[object Array]"!==Object.prototype.toString.call(s.byday))throw"Recurrence rrule 'byday' must be an array";if(s.byday.length>7)throw"Recurrence rrule 'byday' array must not be longer than the 7 days in a week";s.byday=s.byday.filter(function(e,t){return s.byday.indexOf(e)==t});for(var c in s.byday)if(a.indexOf(s.byday[c])<0)throw"Recurrence rrule 'byday' values must include only the following: 'SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'"}}var g=new Date(l),d=new Date(u),f=new Date,S=("0000"+g.getFullYear().toString()).slice(-4),E=("00"+(g.getMonth()+1).toString()).slice(-2),v=("00"+g.getDate().toString()).slice(-2),y=("00"+g.getHours().toString()).slice(-2),A=("00"+g.getMinutes().toString()).slice(-2),T=("00"+g.getSeconds().toString()).slice(-2),b=("0000"+d.getFullYear().toString()).slice(-4),D=("00"+(d.getMonth()+1).toString()).slice(-2),N=("00"+d.getDate().toString()).slice(-2),h=("00"+d.getHours().toString()).slice(-2),I=("00"+d.getMinutes().toString()).slice(-2),R=("00"+d.getMinutes().toString()).slice(-2),M=("0000"+f.getFullYear().toString()).slice(-4),w=("00"+(f.getMonth()+1).toString()).slice(-2),L=("00"+f.getDate().toString()).slice(-2),O=("00"+f.getHours().toString()).slice(-2),p=("00"+f.getMinutes().toString()).slice(-2),Y=("00"+f.getMinutes().toString()).slice(-2),U="",V="";y+A+T+h+I+R!=0&&(U="T"+y+A+T,V="T"+h+I+R);var B,C=S+E+v+U,j=b+D+N+V,m=M+w+L+("T"+O+p+Y);if(s)if(s.rrule)B=s.rrule;else{if(B="rrule:FREQ="+s.freq,s.until){var x=new Date(Date.parse(s.until)).toISOString();B+=";UNTIL="+x.substring(0,x.length-13).replace(/[-]/g,"")+"000000Z"}s.interval&&(B+=";INTERVAL="+s.interval),s.count&&(B+=";COUNT="+s.count),s.byday&&s.byday.length>0&&(B+=";BYDAY="+s.byday.join(","))}(new Date).toISOString();var H=["BEGIN:VEVENT","UID:"+n.length+"@"+e,"CLASS:PUBLIC","DESCRIPTION:"+i,"DTSTAMP;VALUE=DATE-TIME:"+m,"DTSTART;VALUE=DATE-TIME:"+C,"DTEND;VALUE=DATE-TIME:"+j,"LOCATION:"+o,"SUMMARY;LANGUAGE=en-us:"+t,"TRANSP:TRANSPARENT","END:VEVENT"];return B&&H.splice(4,0,B),H=H.join(r),n.push(H),H},download:function(e,t){if(n.length<1)return!1;t=void 0!==t?t:".ics",e=void 0!==e?e:"calendar";var a,l=i+r+n.join(r)+o;if(-1===navigator.userAgent.indexOf("MSIE 10"))a=new Blob([l]);else{var u=new BlobBuilder;u.append(l),a=u.getBlob("text/x-vCalendar;charset="+document.characterSet)}return saveAs(a,e+t),l},build:function(){return!(n.length<1)&&i+r+n.join(r)+o}}}console.log("Unsupported Browser")}};
+  </script>
+	
+		<script>
+			var es8x3 = false;
+			function drawRects(canvas){
+				const alarmas_3x1_c1 = ["1","15:00","15:50","ES1","15:50","16:40","AS1","16:40","17:30","Libre","17:30","18:20","ES1","18:20","19:10","AS1","19:10","20:00","Libre","20:00","20:50","ES1","20:50","21:40","AS1","21:40","22:30","Libre"];
+				const alarmas_3x1_c2 = ["2","15:00","15:50","Libre","15:50","16:40","ES1","16:40","17:30","AS1","17:30","18:20","Libre","18:20","19:10","ES1","19:10","20:00","AS1","20:00","20:50","Libre","20:50","21:40","ES1","21:40","22:30","AS1"];
+				const alarmas_3x1_c3 = ["3","15:00","15:50","AS1","15:50","16:40","Libre","16:40","17:30","ES1","17:30","18:20","AS1","18:20","19:10","Libre","19:10","20:00","ES1","20:00","20:50","AS1","20:50","21:40","Libre","21:40","22:30","ES1"];
+				
+				const alarmas_8x3_c1 = ["1","15:00","15:38","AS1","15:38","16:15","Libre","16:15","17:11","ES2","17:11","18:08","AS2","18:08","18:45","Libre","18:45","19:41","ES3","19:41","20:38","AS3","20:38","21:15","Libre","21:15","22:30","ES1"];
+				const alarmas_8x3_c2 = ["2","15:00","15:38","ES1","15:38","16:15","Libre","16:15","17:11","AS2","17:11","18:08","ES2","18:08","18:45","Libre","18:45","19:41","AS3","19:41","20:38","ES3","20:38","21:15","Libre","21:15","22:30","AS1"];
+				const alarmas_8x3_c3 = ["3","15:00","16:15","AS2","16:15","16:53","Libre","16:53","17:49","ES3","17:49","18:45","AS3","18:45","19:23","Libre","19:23","20:19","ES1","20:19","21:15","AS1","21:15","21:53","Libre","21:53","22:30","ES2"];
+				const alarmas_8x3_c4 = ["4","15:00","16:15","ES2","16:15","16:53","Libre","16:53","17:49","AS3","17:49","18:45","ES3","18:45","19:23","Libre","19:23","20:19","AS1","20:19","21:15","ES1","21:15","21:53","Libre","21:53","22:30","AS2"];
+				const alarmas_8x3_c5 = ["5","15:00","15:56","ES3","15:56","16:53","AS3","16:53","17:30","Libre","17:30","18:26","ES1","18:26","19:23","AS1","19:23","20:00","Libre","20:00","20:56","ES2","20:56","21:53","AS2","21:53","22:30","Libre"];
+				const alarmas_8x3_c6 = ["6","15:00","15:56","AS3","15:56","16:53","ES3","16:53","17:30","Libre","17:30","18:26","AS1","18:26","19:23","ES1","19:23","20:00","Libre","20:00","20:56","AS2","20:56","21:53","ES2","21:53","22:30","Libre"];
+				const alarmas_8x3_c7 = ["7","15:00","15:38","Libre","15:38","16:34","ES1","16:34","17:30","AS1","17:30","18:08","Libre","18:08","19:04","ES2","19:04","20:00","AS2","20:00","20:38","Libre","20:38","21:34","ES3","21:34","22:30","AS3"];
+				const alarmas_8x3_c8 = ["8","15:00","15:38","Libre","15:38","16:34","AS1","16:34","17:30","ES1","17:30","18:08","Libre","18:08","19:04","AS2","19:04","20:00","ES2","20:00","20:38","Libre","20:38","21:34","AS3","21:34","22:30","ES3"];
+				
+				
+				const alarmas_6x2_c1 = ["1","15:00","15:50","ES1","15:50","16:40","AS1","16:40","17:30","Libre","17:30","18:20","ES2","18:20","19:10","AS2","19:10","20:00","Libre","20:00","20:50","ES2","20:50","21:40","AS2","21:40","22:30","Libre"];
+				const alarmas_6x2_c2 = ["3","15:00","15:50","AS1","15:50","16:40","Libre","16:40","17:30","ES1","17:30","18:20","AS2","18:20","19:10","Libre","19:10","20:00","ES2","20:00","20:50","AS2","20:50","21:40","Libre","21:40","22:30","ES2"];
+				const alarmas_6x2_c3 = ["2","15:00","15:50","Libre","15:50","16:40","ES1","16:40","17:30","AS1","17:30","18:20","Libre","18:20","19:10","ES2","19:10","20:00","AS2","20:00","20:50","Libre","20:50","21:40","ES2","21:40","22:30","AS2"];
+				const alarmas_6x2_c4 = ["4","15:00","15:50","ES2","15:50","16:40","AS2","16:40","17:30","Libre","17:30","18:20","ES1","18:20","19:10","AS1","19:10","20:00","Libre","20:00","20:50","ES1","20:50","21:40","AS1","21:40","22:30","Libre"];
+				const alarmas_6x2_c5 = ["5","15:00","15:50","AS2","15:50","16:40","Libre","16:40","17:30","ES2","17:30","18:20","AS1","18:20","19:10","Libre","19:10","20:00","ES1","20:00","20:50","AS1","20:50","21:40","Libre","21:40","22:30","ES1"];
+				const alarmas_6x2_c6 = ["6","15:00","15:50","Libre","15:50","16:40","ES2","16:40","17:30","AS2","17:30","18:20","Libre","18:20","19:10","ES1","19:10","20:00","AS1","20:00","20:50","Libre","20:50","21:40","ES1","21:40","22:30","AS1"];
+				
+				var width = canvas.width-1;
+				var height = canvas.height-1;
+				var alarms;
+				
+				console.log("#planilla "+" "+$( "#planilla" ).val());
+	 			var planillatxt = $( "#planilla" ).val();
+				
+				if ("8x3".localeCompare(planillatxt)==0){
+					es8x3 = true;
+					es6x2 = false;
+				}else if ("6x2".localeCompare(planillatxt)==0){	
+					es8x3 = false;
+					es6x2 = true;
+				}else{
+					es8x3 = false;
+					es6x2 = false;
+				}
+					
+				console.log("es8x3 "+" "+es8x3 );	
+				if (es8x3)
+				{
+					var selc8txt = $( "#selc8" ).val();
+					switch (selc8txt ) {
+						case "c1":
+							alarms = alarmas_8x3_c1;
+							break;
+						case "c2":
+							alarms = alarmas_8x3_c2;
+							break;
+						case "c3":
+							alarms = alarmas_8x3_c3;
+							break;
+						case "c4":
+							alarms = alarmas_8x3_c4;
+							break;	
+						case "c5":
+							alarms = alarmas_8x3_c5;
+							break;
+						case "c6":
+							alarms = alarmas_8x3_c6;
+							break;
+						case "c7":
+							alarms = alarmas_8x3_c7;
+							break;
+						case "c8":
+							alarms = alarmas_8x3_c8;
+							break;			
+					}						
+
+				}else if (es6x2){
+					var selc6txt = $( "#selc6" ).val();
+					switch (selc6txt ) {
+						case "c1":
+							alarms = alarmas_6x2_c1;
+							break;
+						case "c2":
+							alarms = alarmas_6x2_c2;
+							break;
+						case "c3":
+							alarms = alarmas_6x2_c3;
+							break;	
+						case "c4":
+							alarms = alarmas_6x2_c4;
+							break;
+						case "c5":
+							alarms = alarmas_6x2_c5;
+							break;
+						case "c6":
+							alarms = alarmas_6x2_c6;
+							break;	
+					}
+				
+				}else
+				{
+					var selc3txt = $( "#selc3" ).val();
+					switch (selc3txt ) {
+						case "c1":
+							alarms = alarmas_3x1_c1;
+							break;
+						case "c2":
+							alarms = alarmas_3x1_c2;
+							break;
+						case "c3":
+							alarms = alarmas_3x1_c3;
+							break;	
+					}
+				}
+				
+				let now = new Date();
+				
+				let hour = now.getHours();
+				let minutes = now.getMinutes();
+				
+				var esMorning = false;
+
+				if (hour <= 14)
+					esMorning = true;
+				if ((hour == 14) && (minutes > 23))
+					esMorning = false;
+					
+					
+				let milis = now.getMilliseconds()
+				
+				var posyprevia=0;
+				
+				if (alarms != null){
+					 for (var j = 1; j < alarms.length; j++) {
+
+
+						var horaini = alarms[j];
+						var horafin = alarms[j+1];
+						console.log("horaini "+" "+alarms[j]);
+						console.log("horafin "+" "+alarms[j+1]);
+						j++;
+						j++;
+						var posicion = alarms[j];
+						var time = horafin.split(":");
+						var hourint = parseInt(time[0]);
+						var minuteint = parseInt(time[1]);
+
+						var timeI = horaini.split(":");
+						var hourintI = parseInt(timeI[0]);
+						var minuteintI = parseInt(timeI[1]);
+
+						var calendar = new Date();
+						
+						var actHour = calendar.getHours();
+						var actMinute = calendar.getMinutes();
+						
+						
+
+						calendar.setHours(hourintI);
+						calendar.setMinutes(minuteintI);
+						milis = calendar.getTime();
+
+						if (esMorning) {
+							milis = milis - 25200000 - 1800000; // restar 7:30 para ser la maÃ±ana
+							calendar.setTime(milis);
+						}
+
+						//SimpleDateFormat simple = new SimpleDateFormat("HH:mm");
+						var simple = new Date();
+						simple.setTime(milis)
+						var hourstxt = simple.getHours();
+						hourintI = hourstxt;
+						
+						if (hourstxt >= 10) 
+							hourstxt=""+hourstxt;
+						else 
+							hourstxt="0"+hourstxt;
+						
+						var minutestxt = simple.getMinutes();
+						minuteintI = minutestxt;
+						if (minutestxt >= 10) 
+							minutestxt=""+minutestxt;
+						else 
+							minutestxt="0"+minutestxt;							
+						var dateStringI = ""+hourstxt+":"+minutestxt;
+						var yearStr = simple.getFullYear();
+						var monthStr = simple.getMonth()+1;
+						var dayStr = simple.getDate();
+						var dateStringIL = yearStr+"/"+monthStr+"/"+dayStr+" "+hourstxt+":"+minutestxt;
+						//console.log("dateStringI "+" "+dateStringI);
+						//console.log("simple "+" "+simple);
+						
+						var isTimePassed = true;
+						
+						if (actHour < hourintI)
+							isTimePassed = false;
+							
+						if ((actHour == hourintI)&&(actMinute < minuteintI))
+							isTimePassed = false;
+						
+						calendar = new Date();
+														
+						
+
+						calendar.setHours(hourint);
+						calendar.setMinutes(minuteint);
+						milis = calendar.getTime();
+
+						if (esMorning) {
+							milis = milis - 25200000 - 1800000; // restar 7:30 para ser la maÃ±ana
+							calendar.setTime(milis);
+						}
+
+						hourint = calendar.getHours();
+						minuteint = calendar.getMinutes();
+
+
+		
+						//Seguro de esto ?
+						simple.setTime(milis)
+
+						var hourstxt = simple.getHours();
+						if (hourstxt >= 10) 
+							hourstxt=""+hourstxt;
+						else 
+							hourstxt="0"+hourstxt;
+						
+						var minutestxt = simple.getMinutes();
+						if (minutestxt >= 10) 
+							minutestxt=""+minutestxt;
+						else 
+							minutestxt="0"+minutestxt;		
+						var dateString =  ""+hourstxt+":"+minutestxt;
+						var dateStringL = simple.getFullYear()+"/"+(simple.getMonth()+1)+"/"+simple.getDate()+" "+hourstxt+":"+minutestxt;
+						//console.log("dateString "+" "+dateString);
+						var aprox = 0;
+						aprox = Math.round((hourint*100 + Math.floor((minuteint/60.0)*100)));
+
+						if (aprox >= 1501)
+							aprox = aprox - 1500;
+						else
+							aprox = aprox -750;
+
+						var posy = 0;
+
+
+
+						if (es8x3)
+							posy = Math.round( ((aprox*height*1.00/750)));
+						else
+							posy = Math.round( ((aprox*height*1.00/750)));
+
+						var puesto = posicion.charAt(0);
+						//posicion.charAt(1);
+						var sector = posicion.charAt(2);
+						
+						var sectorS = "libre";
+						var esRuta = false;
+						if ("Ruta".localeCompare($( "#bloque" ).val())==0)
+						{
+							esRuta = true;
+							if (sector == '1') {
+								//spinnerS =  findViewById(R.id.spinner);
+								sectorS = $( "#sectoresRuta" ).val();
+
+							} else if (sector == '2') {
+								//spinnerS =  findViewById(R.id.spinner2);
+								sectorS = $( "#sectoresRuta2" ).val();
+							} else if (sector == '3') {
+								//spinnerS = findViewById(R.id.spinner3);
+								sectorS = $( "#sectoresRuta3" ).val();
+							} else {
+								sectorS = "LIBRE";
+								
+							}
+						}
+						else
+						{
+							esRuta = false;
+							if (sector == '1') {
+								//spinnerS =  findViewById(R.id.spinner);
+								sectorS = $( "#sectoresTMA" ).val();
+
+							} else if (sector == '2') {
+								//spinnerS =  findViewById(R.id.spinner2);
+								sectorS = $( "#sectoresTMA2" ).val();
+							} else if (sector == '3') {
+								//spinnerS = findViewById(R.id.spinner3);
+								sectorS = $( "#sectoresTMA3" ).val();
+							} else {
+								sectorS = "LIBRE";
+								
+							}
+						}
+	
+/*
+						p.setColor(Color.GREEN);
+						var puestoS = "???";
+						if (puesto == 'E'){
+							puestoS = "EJE";
+							p.setColor(Color.DKGRAY);
+							pt.setColor(Color.LTGRAY);
+						}
+						else if (puesto == 'A'){
+							p.setColor(Color.LTGRAY);
+							pt.setColor(Color.BLACK);
+							puestoS = "AYU";
+						}
+						else if (puesto == 'L') {
+							p.setColor(Color.BLACK);
+							pt.setColor(Color.LTGRAY);
+							puestoS = "";
+						}
+						else puestoS = "???";
+
+
+
+
+						canvas.drawRect(1,posyprevia,width,posy,p);
+
+						//pt.setColor(Color.RED);
+						pt.setTypeface(Typeface.DEFAULT_BOLD);
+						pt.setTextSize(55);
+
+						canvas.drawText(sectorS+" "+puestoS,15,posyprevia+90,pt);
+						canvas.drawText(dateStringI +" - "+dateString,15,posyprevia+40,pt);
+						//if ((j+1) >= alarms.length)
+						//    canvas.drawText(horafin,15,posyprevia+140,pt);
+*/
+						 const ctx = canvas.getContext("2d");
+						 
+						var fillstyleTxt; 
+						var fillstyle; 
+						var puestoS = "???";
+						if (puesto == 'E'){
+							puestoS = "EJE";
+							//p.setColor(Color.DKGRAY);
+							//pt.setColor(Color.LTGRAY);
+							fillstyle="#707070";
+							fillstyleTxt= "#C0C0C0";
+						}
+						else if (puesto == 'A'){
+							//p.setColor(Color.LTGRAY);
+							//pt.setColor(Color.BLACK);
+							puestoS = "AYU";
+							fillstyle="#C0C0C0";
+							fillstyleTxt= "black";
+						}
+						else if (puesto == 'L') {
+							//p.setColor(Color.BLACK);
+							//pt.setColor(Color.LTGRAY);
+							fillstyle="black";
+							fillstyleTxt= "#C0C0C0";
+							puestoS = "";
+						}
+						else puestoS = "???";
+
+						//ctx.fillRect(25, 25, 100, 100);
+						//ctx.clearRect(45, 45, 60, 60);
+						
+						
+						ctx.beginPath();
+						ctx.fillStyle  = fillstyle;
+						ctx.moveTo(0,0);
+						ctx.fillRect(1,posyprevia,width,posy-posyprevia);
+						console.log("StrokeRect "+1+" "+posyprevia+" "+(width)+" "+posy);
+						ctx.fill();
+						ctx.beginPath();
+						ctx.font = "18px serif";
+						ctx.fillStyle = fillstyleTxt;
+						ctx.fillText(sectorS+" "+puestoS,15,posyprevia+40);
+						//console.log("fillText "+sectorS+" "+puestoS+" "+15+" "+(posyprevia+90));
+						ctx.moveTo(0,0);
+						
+						
+						if (isTimePassed == false){
+							cal.addEvent('PlanillaDia',sectorS+" "+puestoS, 'LECB ACC', dateStringIL, dateStringL);
+							console.log("PlanillaDia "+sectorS+" "+puestoS+" "+dateStringIL+" "+dateStringL);
+						}
+						ctx.fillText(dateStringI +" - "+dateString,15,posyprevia+20);
+						ctx.fill();
+
+						posyprevia = posy;
+					}
+				}
+				
+				calendar = new Date();
+				hour = calendar.getHours();
+				minute = calendar.getMinutes();
+				var aprox = Math.round (hour*100 + Math.floor((minutes/60.0)*100));
+				if (aprox >= 1500)
+					aprox = aprox - 1500;
+				else
+					aprox = aprox -750;
+				var posx=0;
+				var posy = 0;
+				if (es8x3)
+					posx = Math.round(width - (aprox*width*1.00/750));
+				else
+					posx = Math.round (width - (aprox*width*1.00/750));
+
+				if (es8x3)
+					posy = Math.round ((aprox*height*1.00/750));
+				else
+					posy = Math.round ((aprox*height*1.00/750));
+				const ctx = canvas.getContext("2d");
+				ctx.strokeStyle  = "red";
+				if (posx < 0 ) posx = 0;
+				
+				// p.setColor(Color.RED);
+				//canvas.drawLine(0, posy, width, posy, p);
+
+				ctx.beginPath();
+				ctx.moveTo(0, posy);
+				ctx.lineTo(width, posy);
+				console.log("lineTo "+0+" "+posy+" "+width+" "+posy);
+				//canvas.drawLine(0, 100, width, 100, p);
+				if (posy > 0){
+					//canvas.drawLine(0, posy-1, width, posy-1, p);
+					ctx.moveTo(0, posy-1);
+					ctx.lineTo(width, posy-1);
+				}
+				//canvas.drawLine(0, posy+1, width, posy+2, p);
+				//ctx.moveTo(0, posy+2);
+				//ctx.lineTo(width, posy+2);
+				//canvas.drawLine(0, posy+2, width, posy+2, p);
+				//canvas.drawLine(0, posy+3, width, posy+3, p);
+				ctx.stroke();
+				
+			
+			}
+			function drawPlanilla() {
+				
+				cal = ics();
+				if ("8x3".localeCompare($( "#planilla" ).val())==0)
+					es8x3 = true;
+				else
+					es8x3 = false;
+					
+				let now = new Date();
+				
+				let hour = now.getHours();
+				let minutes = now.getMinutes();
+				
+				var esMorning = false;
+
+				if (hour <= 14)
+					esMorning = true;
+				if ((hour == 14) && (minutes > 23))
+					esMorning = false;
+							
+				let milis = now.getMilliseconds()
+				
+				
+				const canvas = document.getElementById("canvasPlanilla");
+				if (canvas.getContext) {
+					const ctx = canvas.getContext("2d");
+					//ctx.canvas.width  = window.innerWidth;
+					//ctx.canvas.height = window.innerHeight;
+					var width = canvas.width;
+					var height = canvas.height;
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					//ctx.fillRect(25, 25, 100, 100);
+					//ctx.clearRect(45, 45, 60, 60);
+					//ctx.strokeRect(50, 50, 50, 50);
+				}
+				drawRects(canvas);
+				
+				
+			  }
+			
+						  
+			window.addEventListener("load", drawPlanilla);
+
+			$(document).ready(function(){
+			
+				$("#bloque" ).selectmenu({ width : 'auto'});
+		 
+				$("#planilla" ).selectmenu({ width : 'auto'});
+				$("#sectoresTMA" ).selectmenu({ width : 'auto'});
+				$("#sectoresTMA2" ).selectmenu({ width : 'auto'});
+				$("#sectoresTMA3" ).selectmenu({ width : 'auto'});
+				$("#sectoresRuta" ).selectmenu({ width : 'auto'});
+				$("#sectoresRuta2" ).selectmenu({ width : 'auto'});
+				$("#sectoresRuta3" ).selectmenu({ width : 'auto'});
+				$("#selc3" ).selectmenu({ width : 'auto'});
+				$("#selc6" ).selectmenu({ width : 'auto'});
+				$("#selc8" ).selectmenu({ width : 'auto'});
+				
+				$( function() {
+					$( ".widget input[type=submit], .widget a, .widget button" ).button();
+					$( "button, input, a" ).on( "click", function( event ) {
+						event.preventDefault();
+	
+
+						cal.download('PlanillaDia')
+
+					  
+					  
+					} );
+				  } );
+				
+				
+   			  $('select').on('selectmenuchange', function() {
+  				console.log("cambiado "+this.value);
+					
+					var planillatxt = $( "#planilla" ).val();
+					
+					if ("8x3".localeCompare(planillatxt)==0){
+						$("#divselc8" ).show();
+						$("#divselc3" ).hide();
+						$("#divselc6" ).hide();
+					} else if ("6x2".localeCompare(planillatxt)==0){	
+						$("#divselc8" ).hide();
+						$("#divselc3" ).hide();
+						$("#divselc6" ).show();
+					}else{
+						$("#divselc8" ).hide();
+						$("#divselc3" ).show();
+						$("#divselc6" ).hide();
+					}
+					
+					var bloquetxt = $("#bloque").val();
+					if ("TMA".localeCompare(bloquetxt)==0){
+						$("#divSectTMA").show();
+						$("#divSectRuta").hide();
+						//$("#sectoresTMA" ).selectmenu({ width : 'auto'});
+						//$("#sectoresTMA2" ).selectmenu({ width : 'auto'});
+						//$("#sectoresTMA3" ).selectmenu({ width : 'auto'});
+						if ("8x3".localeCompare(planillatxt)==0)
+						{
+					      $("#sectoresTMA2" ).selectmenu("enable");
+						  $("#sectoresTMA3" ).selectmenu("enable");
+						}
+						else
+						{
+						  $("#sectoresTMA2" ).selectmenu("disable");
+						  $("#sectoresTMA3" ).selectmenu("disable");
+						}
+					}else{
+						$("#divSectTMA").hide();
+						$("#divSectRuta").show();
+						  
+						if ("8x3".localeCompare(planillatxt)==0)
+						{
+					      $("#sectoresRuta2" ).selectmenu("enable");
+						  $("#sectoresRuta3" ).selectmenu("enable");
+						} else if ("6x2".localeCompare(planillatxt)==0){	
+						  $("#sectoresRuta2" ).selectmenu("enable");
+						  $("#sectoresRuta3" ).selectmenu("disable");
+						}
+						else
+						{
+						  $("#sectoresRuta2" ).selectmenu("disable");
+						  $("#sectoresRuta3" ).selectmenu("disable");
+						}
+					}
+					
+					
+					setCookie("planilla", $( "#planilla" ).val());
+					setCookie("bloque", $( "#bloque" ).val());
+					setCookie("selc3", $( "#selc3" ).val());
+					setCookie("selc6", $( "#selc6" ).val());
+					setCookie("selc8", $( "#selc8" ).val());
+
+
+					setCookie("sectoresTMA",$("#sectoresTMA" ).val());
+					setCookie("sectoresTMA2",$("#sectoresTMA2" ).val());
+					setCookie("sectoresTMA3",$("#sectoresTMA3" ).val());
+
+					setCookie("sectoresRuta",$("#sectoresRuta" ).val());
+					setCookie("sectoresRuta2",$("#sectoresRuta2" ).val());
+					setCookie("sectoresRuta3",$("#sectoresRuta3" ).val());				
+
+						drawPlanilla();
+				});
+		
+				
+				
+				var bloquecookie = "Ruta";
+				if (bloquecookie = getCookie("bloque"))
+					$( "#bloque" ).val(bloquecookie);	
+					
+				
+					if ("TMA".localeCompare(bloquecookie)==0){
+						$("#divSectTMA").show();
+						$("#divSectRuta").hide();
+						var sectTMAcookie = "DDI";
+						if (sectTMAcookie = getCookie("sectoresTMA"))
+							$( "#sectoresTMA" ).val(sectTMAcookie);		
+						if (sectTMAcookie = getCookie("sectoresTMA2"))
+							$( "#sectoresTMA2" ).val(sectTMAcookie);
+						if (sectTMAcookie = getCookie("sectoresTMA3"))
+							$( "#sectoresTMA3" ).val(sectTMAcookie);	
+						//$("#sectoresTMA" ).selectmenu({ width : 'auto'});
+						//$("#sectoresTMA2" ).selectmenu({ width : 'auto'});
+						//$("#sectoresTMA3" ).selectmenu({ width : 'auto'});
+					}else{
+						$("#divSectTMA").hide();
+						$("#divSectRuta").show();
+						var sectRutacookie = "GOI";
+						if (sectRutacookie = getCookie("sectoresRuta"))
+							$( "#sectoresRuta" ).val(sectRutacookie);		
+						if (sectRutacookie = getCookie("sectoresRuta2"))
+							$( "#sectoresRuta2" ).val(sectRutacookie);
+						if (sectRutacookie = getCookie("sectoresRuta3"))
+							$( "#sectoresRuta3" ).val(sectRutacookie);							
+						//$("#sectoresRuta" ).selectmenu({ width : 'auto'});
+						//$("#sectoresRuta2" ).selectmenu({ width : 'auto'});
+						//$("#sectoresRuta3" ).selectmenu({ width : 'auto'});
+					}						
+				
+				var planillacookie = "3x1";
+				if (planillacookie = getCookie("planilla"))
+					$( "#planilla" ).val(planillacookie);
+				
+				//var planillatxt = $( "#planilla" ).val();	
+				if ("8x3".localeCompare(planillacookie)==0){
+					$("#divselc8" ).show();
+					$("#divselc3" ).hide();
+					$("#divselc6" ).hide();
+				}else if ("6x2".localeCompare(planillacookie)==0){
+					$("#divselc8" ).hide();
+					$("#divselc3" ).hide();
+					$("#divselc6" ).show();
+				}else{
+					$("#divselc8" ).hide();
+					$("#divselc3" ).show();
+					$("#divselc6" ).hide();
+				}										
+					
+				var selc3cookie = "selc3";
+				if (selc3cookie = getCookie("planilla"))
+					$( "#planilla" ).val(selc3cookie);
+					
+				var selc3cookie = "C1";
+				if (selc3cookie = getCookie("selc3"))
+					$( "#selc3" ).val(selc3cookie);	
+
+				var selc8cookie = "C1";
+				if (selc8cookie = getCookie("selc8"))
+					$( "#selc8" ).val(selc8cookie);	
+
+				var selc6cookie = "C1";
+				if (selc6cookie = getCookie("selc6"))
+					$( "#selc6" ).val(selc8cookie);						
+					
+
+
+				$("#bloque" ).selectmenu("refresh");
+		 
+				$("#planilla" ).selectmenu("refresh");
+				$("#sectoresTMA" ).selectmenu("refresh");
+				$("#sectoresTMA2" ).selectmenu("refresh");
+				$("#sectoresTMA3" ).selectmenu("refresh");
+				$("#sectoresRuta" ).selectmenu("refresh");
+				$("#sectoresRuta2" ).selectmenu("refresh");
+				$("#sectoresRuta3" ).selectmenu("refresh");	
+				$("#selc3" ).selectmenu("refresh");
+				$("#selc8" ).selectmenu("refresh");
+				$("#selc6" ).selectmenu("refresh");	
+				
+				drawPlanilla();
+			  	
+			
+			
+				setInterval(function() {
+					drawPlanilla();
+					}, 5 * 60 * 1000); // 60 * 1000 milsec
+				})
+			
+
+		</script>
+	</div>
+</body>
+</html>
+
